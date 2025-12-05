@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Результаты оценок - Стаканы</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">🍷 Стаканы</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="results.html" class="active">Результаты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>История оценок</h1>
+            <p class="subtitle">Все ваши оценки стаканов</p>
+
+            <div class="controls">
+                <button id="clearBtn" class="clear-btn">Очистить историю</button>
+                <button id="sortBtn" class="sort-btn">Сортировать по оценке</button>
+            </div>
+
+            <div id="resultsList" class="results-list">
+                <p class="empty-message">Нет сохраненных оценок. Перейдите на главную страницу, чтобы добавить оценку.</p>
+            </div>
+
+            <div class="statistics" id="statistics" style="display: none;">
+                <h2>Статистика</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Всего оценок</h3>
+                        <p class="stat-value" id="totalEvaluations">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Средняя оценка</h3>
+                        <p class="stat-value" id="averageScore">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Лучшая оценка</h3>
+                        <p class="stat-value" id="bestScore">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Средняя цена</h3>
+                        <p class="stat-value" id="averagePrice">0</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Оценка стаканов. Все права защищены.</p>
+    </footer>
+
+    <script src="results.js"></script>
+</body>
+</html>
+
+

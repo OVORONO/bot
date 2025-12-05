@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оценка стаканов - Главная</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">🍷 Стаканы</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="active">Главная</a></li>
+                <li><a href="results.html">Результаты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>Оценка стаканов</h1>
+            <p class="subtitle">Оцените качество и характеристики стакана</p>
+
+            <div class="evaluation-form">
+                <div class="form-group">
+                    <label for="glassName">Название стакана:</label>
+                    <input type="text" id="glassName" placeholder="Введите название стакана" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="material">Материал:</label>
+                    <select id="material" required>
+                        <option value="">Выберите материал</option>
+                        <option value="glass">Стекло</option>
+                        <option value="crystal">Хрусталь</option>
+                        <option value="plastic">Пластик</option>
+                        <option value="ceramic">Керамика</option>
+                        <option value="metal">Металл</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="design">Дизайн (1-10):</label>
+                    <div class="rating-input">
+                        <input type="range" id="design" min="1" max="10" value="5" step="1">
+                        <span class="rating-value" id="designValue">5</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="quality">Качество (1-10):</label>
+                    <div class="rating-input">
+                        <input type="range" id="quality" min="1" max="10" value="5" step="1">
+                        <span class="rating-value" id="qualityValue">5</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="durability">Прочность (1-10):</label>
+                    <div class="rating-input">
+                        <input type="range" id="durability" min="1" max="10" value="5" step="1">
+                        <span class="rating-value" id="durabilityValue">5</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="comfort">Удобство использования (1-10):</label>
+                    <div class="rating-input">
+                        <input type="range" id="comfort" min="1" max="10" value="5" step="1">
+                        <span class="rating-value" id="comfortValue">5</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Цена (руб.):</label>
+                    <input type="number" id="price" placeholder="Введите цену" min="0" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="comments">Комментарии:</label>
+                    <textarea id="comments" rows="4" placeholder="Добавьте свои комментарии о стакане"></textarea>
+                </div>
+
+                <button type="button" id="submitBtn" class="submit-btn">Оценить стакан</button>
+            </div>
+
+            <div id="result" class="result-container" style="display: none;">
+                <h2>Результат оценки</h2>
+                <div class="result-card">
+                    <p><strong>Название:</strong> <span id="resultName"></span></p>
+                    <p><strong>Материал:</strong> <span id="resultMaterial"></span></p>
+                    <p><strong>Общая оценка:</strong> <span id="resultScore"></span>/10</p>
+                    <p><strong>Цена:</strong> <span id="resultPrice"></span> руб.</p>
+                    <p><strong>Соотношение цена/качество:</strong> <span id="resultRatio"></span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container contact-section">
+            <h2>Свяжитесь с нами</h2>
+            <p class="subtitle">Есть вопросы или предложения? Напишите нам!</p>
+            <form id="contact" class="contact-form">
+                <div class="form-group">
+                    <label for="contactName">Ваше имя:</label>
+                    <input type="text" id="contactName" name="name" placeholder="Введите ваше имя" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactEmail">Email:</label>
+                    <input type="email" id="contactEmail" name="email" placeholder="Введите ваш email" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactMessage">Сообщение:</label>
+                    <textarea id="contactMessage" name="message" rows="4" placeholder="Введите ваше сообщение" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Отправить сообщение</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Оценка стаканов. Все права защищены.</p>
+    </footer>
+      
+    <script>
+    document.getElementById('contact').addEventListener('submit', async (e) => {
+        e.preventDefault();
+      
+        const data = Object.fromEntries(new FormData(e.target).entries());
+        const text =
+          `📩 Новое сообщение:\n` +
+          `Имя: ${data.name}\n` +
+          `Email: ${data.email}\n` +
+          `Сообщение: ${data.message}`;
+      
+        await fetch(`https://api.telegram.org/bot8510606061:AAH_CY4LkkU-PyDSPDrZaZ2Mt55AR_FxEH4/sendMessage`, {
+          method: 'POST',
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chat_id: "1311948658",
+            text
+          })
+        });
+      
+        alert("Сообщение отправлено!");
+        e.target.reset();
+    });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
+
